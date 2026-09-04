@@ -41,30 +41,24 @@ public class PatientBST {
         }
     }
 
-    // delete - Patient ID vachi patient-a remove pannum
     public void delete(int patientId) {
         root = deleteRec(root, patientId);
     }
 
-    // deleteRec - recursive-a correct node-a kandupidichu delete pannum
     private PatientNode deleteRec(PatientNode current, int patientId) {
         if (current == null) {
-            return null; // patient kedaikala, nothing to delete
+            return null;
         }
 
         if (patientId < current.data.patientId) {
-            current.left = deleteRec(current.left, patientId); // chinna ID, left side po
+            current.left = deleteRec(current.left, patientId);
         } else if (patientId > current.data.patientId) {
-            current.right = deleteRec(current.right, patientId); // periya ID, right side po
+            current.right = deleteRec(current.right, patientId);
         } else {
-            // idhu thaan delete pannanum node
-
-            // Case 1: no children
             if (current.left == null && current.right == null) {
                 return null;
             }
 
-            // Case 2: one child - andha child-a nikkara node oda idam vachikko
             if (current.left == null) {
                 return current.right;
             }
@@ -72,10 +66,9 @@ public class PatientBST {
                 return current.left;
             }
 
-            // Case 3: two children - right subtree oda smallest node-a eduthu replace pannu
             PatientNode successor = findMin(current.right);
-            current.data = successor.data; // value copy pannu
-            current.right = deleteRec(current.right, successor.data.patientId); // duplicate-a remove pannu
+            current.data = successor.data;
+            current.right = deleteRec(current.right, successor.data.patientId);
         }
 
         return current;
@@ -83,12 +76,11 @@ public class PatientBST {
 
     private PatientNode findMin(PatientNode node) {
         while (node.left != null) {
-            node = node.left; // ellame left side thaan smallest, left-ku left po
+            node = node.left;
         }
-        return node; // left illama irukura node thaan smallest
+        return node;
     }
 
-    // inorderTraversal - patientId ascending order-la ellarayum print pannum
     public void inorderTraversal() {
         inorderRec(root);
     }
