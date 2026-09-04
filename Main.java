@@ -45,5 +45,42 @@ public class Main {
         bst.inorderTraversal();
 
         System.out.println();
+
+        Queue queue = new Queue();
+
+        System.out.println("--- Testing Enqueue ---");
+        queue.enqueue(new QueuePatient(201, "Nadeesha Fonseka", "Asthma"));
+        queue.enqueue(new QueuePatient(202, "Ruwan Jayasuriya", "Arthritis"));
+        queue.enqueue(new QueuePatient(203, "Chathurika Weerasinghe", "Migraine"));
+
+        System.out.println();
+
+        System.out.println("Display Queue");
+        queue.displayQueue();
+
+        System.out.println();
+
+        System.out.println("--- Testing Dequeue ---");
+        QueuePatient next = queue.dequeue();
+        if (next != null) {
+            System.out.println("Dequeued: " + next);
+        }
+
+        System.out.println();
+
+        System.out.println("Display Queue");
+        queue.displayQueue();
+
+        System.out.println();
+
+        System.out.println("--- Testing Empty Queue ---");
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+
+        System.out.println();
+
+        System.out.println("Display Queue");
+        queue.displayQueue();
     }
 }
