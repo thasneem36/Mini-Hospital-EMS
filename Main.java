@@ -82,5 +82,44 @@ public class Main {
 
         System.out.println("Display Queue");
         queue.displayQueue();
+
+        System.out.println();
+
+        TreatmentStack stack = new TreatmentStack();
+
+        System.out.println("--- Testing Push ---");
+        stack.push(new TreatmentRecord(301, "Nadeesha Fonseka", "Nebulizer treatment", "2026-09-01"));
+        stack.push(new TreatmentRecord(302, "Ruwan Jayasuriya", "Joint injection", "2026-09-02"));
+        stack.push(new TreatmentRecord(303, "Chathurika Weerasinghe", "Migraine medication", "2026-09-03"));
+
+        System.out.println();
+
+        System.out.println("Display Records");
+        stack.displayRecords();
+
+        System.out.println();
+
+        System.out.println("--- Testing Pop ---");
+        TreatmentRecord latest = stack.pop();
+        if (latest != null) {
+            System.out.println("Popped: " + latest);
+        }
+
+        System.out.println();
+
+        System.out.println("Display Records");
+        stack.displayRecords();
+
+        System.out.println();
+
+        System.out.println("--- Testing Empty Stack ---");
+        stack.pop();
+        stack.pop();
+        stack.pop();
+
+        System.out.println();
+
+        System.out.println("Display Records");
+        stack.displayRecords();
     }
 }
