@@ -1,10 +1,12 @@
 public class Patient {
+    // basic patient detail fields
     int patientId;
     String name;
     int age;
     String contactNumber;
     String medicalCondition;
 
+    // sets all patient fields
     public Patient(int patientId,
             String name,
             int age,
@@ -18,11 +20,12 @@ public class Patient {
         this.medicalCondition = medicalCondition;
     }
 
+    // returns patient as text
     @Override
     public String toString() {
 
-        return "ID: " + patientId + ", Name: " + name + 
-        ", Age: " + age + ", Contact: " + contactNumber + 
+        return "ID: " + patientId + ", Name: " + name +
+        ", Age: " + age + ", Contact: " + contactNumber +
         ", Condition: " + medicalCondition;
     }
 }

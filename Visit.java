@@ -1,10 +1,12 @@
 public class Visit {
+    // visit detail fields
     int visitId;
     String visitDate;
     String doctorName;
     String diagnosis;
     String treatment;
 
+    // sets all visit fields
     public Visit(int visitId, String visitDate, String doctorName, String diagnosis, String treatment) {
         this.visitId = visitId;
         this.visitDate = visitDate;
@@ -13,6 +15,7 @@ public class Visit {
         this.treatment = treatment;
     }
 
+    // returns visit as text
     @Override
     public String toString() {
         return "Visit ID: " + visitId + ", Date: " + visitDate +

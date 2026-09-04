@@ -1,5 +1,6 @@
 public class Main {
     public static void main(String[] args) {
+        // testing the patient bst
         PatientBST bst = new PatientBST();
 
         System.out.println("--- Testing Insert ---");
@@ -46,6 +47,7 @@ public class Main {
 
         System.out.println();
 
+        // testing the emergency queue
         Queue queue = new Queue();
 
         System.out.println("--- Testing Enqueue ---");
@@ -85,6 +87,7 @@ public class Main {
 
         System.out.println();
 
+        // testing the treatment stack
         TreatmentStack stack = new TreatmentStack();
 
         System.out.println("--- Testing Push ---");
@@ -124,6 +127,7 @@ public class Main {
 
         System.out.println();
 
+        // testing the visit history
         VisitHistory history = new VisitHistory();
 
         System.out.println("--- Testing Add Visit ---");
