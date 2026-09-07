@@ -1,177 +1,228 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        // testing the patient bst
+        // seed the sample data once
         PatientBST bst = new PatientBST();
+        bst.insert(new Patient(100, "test", 24, "0771234567", "Fever"));
 
-        System.out.println("--- Testing Insert ---");
-        bst.insert(new Patient(
-                100,
-                "Thasneem",
-                24,
-                "0771234567",
-                "Fever"));
-
-        System.out.println("Inorder Traversal");
-        System.out.println("Patients in ascending order:");
-        bst.inorderTraversal();
-
-        System.out.println();
-
-        System.out.println("Search");
-        Patient found = bst.search(105);
-        if (found != null) {
-            System.out.println("Patient found: " + found);
-        } else {
-            System.out.println("Patient with ID 107 not found.");
-        }
-
-        System.out.println();
-
-        Patient notFound = bst.search(102);
-        if (notFound != null) {
-            System.out.println("Patient found: " + notFound);
-        } else {
-            System.out.println("Patient with ID 999 not found.");
-        }
-
-        System.out.println();
-
-        System.out.println("Delete");
-        System.out.println("Deleting patient with ID 105 (has two children)...");
-        bst.delete(105);
-
-        System.out.println();
-
-        System.out.println("Patients in ascending order after deletion:");
-        bst.inorderTraversal();
-
-        System.out.println();
-
-        // testing the emergency queue
         Queue queue = new Queue();
+        queue.enqueue(new QueuePatient(100, "test", "Asthma"));
 
-        System.out.println("--- Testing Enqueue ---");
-        queue.enqueue(new QueuePatient(201, "Nadeesha Fonseka", "Asthma"));
-        queue.enqueue(new QueuePatient(202, "Ruwan Jayasuriya", "Arthritis"));
-        queue.enqueue(new QueuePatient(203, "Chathurika Weerasinghe", "Migraine"));
-
-        System.out.println();
-
-        System.out.println("Display Queue");
-        queue.displayQueue();
-
-        System.out.println();
-
-        System.out.println("--- Testing Dequeue ---");
-        QueuePatient next = queue.dequeue();
-        if (next != null) {
-            System.out.println("Dequeued: " + next);
-        }
-
-        System.out.println();
-
-        System.out.println("Display Queue");
-        queue.displayQueue();
-
-        System.out.println();
-
-        System.out.println("--- Testing Empty Queue ---");
-        queue.dequeue();
-        queue.dequeue();
-        queue.dequeue();
-
-        System.out.println();
-
-        System.out.println("Display Queue");
-        queue.displayQueue();
-
-        System.out.println();
-
-        // testing the treatment stack
         TreatmentStack stack = new TreatmentStack();
+        stack.push(new TreatmentRecord(100, "teast treatment", "Nebulizer treatment", "2026-09-01"));
 
-        System.out.println("--- Testing Push ---");
-        stack.push(new TreatmentRecord(301, "Nadeesha Fonseka", "Nebulizer treatment", "2026-09-01"));
-        stack.push(new TreatmentRecord(302, "Ruwan Jayasuriya", "Joint injection", "2026-09-02"));
-        stack.push(new TreatmentRecord(303, "Chathurika Weerasinghe", "Migraine medication", "2026-09-03"));
-
-        System.out.println();
-
-        System.out.println("Display Records");
-        stack.displayRecords();
-
-        System.out.println();
-
-        System.out.println("--- Testing Pop ---");
-        TreatmentRecord latest = stack.pop();
-        if (latest != null) {
-            System.out.println("Popped: " + latest);
-        }
-
-        System.out.println();
-
-        System.out.println("Display Records");
-        stack.displayRecords();
-
-        System.out.println();
-
-        System.out.println("--- Testing Empty Stack ---");
-        stack.pop();
-        stack.pop();
-        stack.pop();
-
-        System.out.println();
-
-        System.out.println("Display Records");
-        stack.displayRecords();
-
-        System.out.println();
-
-        // testing the visit history
         VisitHistory history = new VisitHistory();
+        history.addVisit(new Visit(100, "2026-08-10", "Dr. test", "Fever", "tablet"));
 
-        System.out.println("--- Testing Add Visit ---");
-        history.addVisit(new Visit(401, "2026-08-10", "Dr. Silva", "Fever", "Paracetamol"));
-        history.addVisit(new Visit(402, "2026-08-20", "Dr. Perera", "Cough", "Cough syrup"));
-        history.addVisit(new Visit(403, "2026-09-01", "Dr. Fernando", "Checkup", "None"));
+        // menu loop
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
 
-        System.out.println();
+        while (running) {
+            System.out.println();
+            System.out.println("Patient Record");
+            System.out.println("------------------------");
+            System.out.println("1 - add patient");
+            System.out.println("2 - list patient");
+            System.out.println("3 - search patient");
+            System.out.println("4 - delete patient");
+            System.out.println();
+            System.out.println("Emergency Patient Queue");
+            System.out.println("------------------------");
+            System.out.println("5 - add to queue");
+            System.out.println("6 - remove from queue");
+            System.out.println("7 - view queue");
+            System.out.println();
+            System.out.println("Treatment History");
+            System.out.println("------------------------");
+            System.out.println("8 - add treatment");
+            System.out.println("9 - remove treatment");
+            System.out.println("10 - view treatment history");
+            System.out.println();
+            System.out.println("Visit History");
+            System.out.println("------------------------");
+            System.out.println("11 - add visit");
+            System.out.println("12 - search visit");
+            System.out.println("13 - remove visit");
+            System.out.println("14 - view visit history");
+            System.out.println();
+            System.out.println("0 - exit");
+            System.out.print("Choose an option: ");
 
-        System.out.println("Display History");
-        history.displayHistory();
+            String input = scanner.nextLine();
+            int choice;
+            try {
+                choice = Integer.parseInt(input.trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid choice, try again.");
+                continue;
+            }
 
-        System.out.println();
+            switch (choice) {
+                // patient record
+                case 1: {
+                    try {
+                        System.out.print("Enter patient ID: ");
+                        int id = Integer.parseInt(scanner.nextLine().trim());
+                        System.out.print("Enter name: ");
+                        String name = scanner.nextLine();
+                        System.out.print("Enter age: ");
+                        int age = Integer.parseInt(scanner.nextLine().trim());
+                        System.out.print("Enter contact number: ");
+                        String contact = scanner.nextLine();
+                        System.out.print("Enter medical condition: ");
+                        String condition = scanner.nextLine();
+                        bst.insert(new Patient(id, name, age, contact, condition));
+                        System.out.println("Patient added.");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number, patient not added.");
+                    }
+                    break;
+                }
 
-        System.out.println("--- Testing Search Visit ---");
-        Visit foundVisit = history.searchVisit(402);
-        if (foundVisit != null) {
-            System.out.println("Visit found: " + foundVisit);
-        } else {
-            System.out.println("Visit with ID 402 not found.");
+                case 2:
+                    bst.inorderTraversal();
+                    break;
+
+                case 3: {
+                    System.out.print("Enter patient ID: ");
+                    int id = Integer.parseInt(scanner.nextLine().trim());
+                    Patient patient = bst.search(id);
+                    if (patient != null) {
+                        System.out.println("Patient found: " + patient);
+                    } else {
+                        System.out.println("No patient with ID " + id + ".");
+                    }
+                    break;
+                }
+
+                case 4: {
+                    System.out.print("Enter patient ID: ");
+                    int id = Integer.parseInt(scanner.nextLine().trim());
+                    if (bst.search(id) != null) {
+                        bst.delete(id);
+                        System.out.println("Deleted patient " + id + ".");
+                    } else {
+                        System.out.println("No patient with ID " + id + ".");
+                    }
+                    break;
+                }
+
+                // emergency queue
+                case 5: {
+                    try {
+                        System.out.print("Enter patient ID: ");
+                        int id = Integer.parseInt(scanner.nextLine().trim());
+                        System.out.print("Enter name: ");
+                        String name = scanner.nextLine();
+                        System.out.print("Enter medical condition: ");
+                        String condition = scanner.nextLine();
+                        queue.enqueue(new QueuePatient(id, name, condition));
+                        System.out.println(name + " added to the queue.");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number, not added to queue.");
+                    }
+                    break;
+                }
+
+                case 6: {
+                    QueuePatient next = queue.dequeue();
+                    if (next != null) {
+                        System.out.println("Removed from queue: " + next);
+                    }
+                    break;
+                }
+
+                case 7:
+                    queue.displayQueue();
+                    break;
+
+                // treatment history
+                case 8: {
+                    try {
+                        System.out.print("Enter patient ID: ");
+                        int id = Integer.parseInt(scanner.nextLine().trim());
+                        System.out.print("Enter patient name: ");
+                        String name = scanner.nextLine();
+                        System.out.print("Enter treatment details: ");
+                        String details = scanner.nextLine();
+                        System.out.print("Enter completion date: ");
+                        String date = scanner.nextLine();
+                        stack.push(new TreatmentRecord(id, name, details, date));
+                        System.out.println("Treatment record added for " + name + ".");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number, treatment not added.");
+                    }
+                    break;
+                }
+
+                case 9: {
+                    TreatmentRecord latest = stack.pop();
+                    if (latest != null) {
+                        System.out.println("Removed: " + latest);
+                    }
+                    break;
+                }
+
+                case 10:
+                    stack.displayRecords();
+                    break;
+
+                // visit history
+                case 11: {
+                    try {
+                        System.out.print("Enter visit ID: ");
+                        int id = Integer.parseInt(scanner.nextLine().trim());
+                        System.out.print("Enter visit date: ");
+                        String date = scanner.nextLine();
+                        System.out.print("Enter doctor name: ");
+                        String doctor = scanner.nextLine();
+                        System.out.print("Enter diagnosis: ");
+                        String diagnosis = scanner.nextLine();
+                        System.out.print("Enter treatment: ");
+                        String treatment = scanner.nextLine();
+                        history.addVisit(new Visit(id, date, doctor, diagnosis, treatment));
+                        System.out.println("Visit added.");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid number, visit not added.");
+                    }
+                    break;
+                }
+
+                case 12: {
+                    System.out.print("Enter visit ID: ");
+                    int id = Integer.parseInt(scanner.nextLine().trim());
+                    Visit visit = history.searchVisit(id);
+                    if (visit != null) {
+                        System.out.println("Visit found: " + visit);
+                    } else {
+                        System.out.println("No visit with ID " + id + ".");
+                    }
+                    break;
+                }
+
+                case 13: {
+                    System.out.print("Enter visit ID: ");
+                    int id = Integer.parseInt(scanner.nextLine().trim());
+                    history.removeVisit(id);
+                    break;
+                }
+
+                case 14:
+                    history.displayHistory();
+                    break;
+
+                case 0:
+                    System.out.println("Goodbye.");
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid choice, try again.");
+            }
         }
 
-        Visit missingVisit = history.searchVisit(999);
-        if (missingVisit != null) {
-            System.out.println("Visit found: " + missingVisit);
-        } else {
-            System.out.println("Visit with ID 999 not found.");
-        }
-
-        System.out.println();
-
-        System.out.println("--- Testing Remove Visit ---");
-        System.out.println("Removing head visit (ID 401)...");
-        history.removeVisit(401);
-
-        System.out.println("Removing middle visit (ID 403)...");
-        history.removeVisit(403);
-
-        System.out.println("Removing visit that doesn't exist (ID 999)...");
-        history.removeVisit(999);
-
-        System.out.println();
-
-        System.out.println("Display History");
-        history.displayHistory();
+        scanner.close();
     }
 }

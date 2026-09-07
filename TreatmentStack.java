@@ -13,7 +13,6 @@ public class TreatmentStack {
     // adds record to stack
     public void push(TreatmentRecord record) {
         stack.push(record);
-        System.out.println("Treatment record added for " + record.patientName + ".");
     }
 
     // removes latest treatment record

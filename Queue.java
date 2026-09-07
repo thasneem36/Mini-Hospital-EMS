@@ -13,7 +13,6 @@ public class Queue {
     // adds patient to queue
     public void enqueue(QueuePatient patient) {
         queue.addLast(patient);
-        System.out.println(patient.name + " added to the queue.");
     }
 
     // removes patient from queue
